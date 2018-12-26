@@ -1,0 +1,171 @@
+php artisan //lista komandi
+
+
+/*######################################################*/
+
+php artisan migarate 
+php artisan migarate:fresh
+php artisan migarate:reset
+php artisan migrate:rollback 
+php artisan migrate:refresh
+
+/*######################################################*/
+
+If you receive a "class not found" error when running migrations, try running the: 
+
+composer dump-autoload //da bi composer procitao novokreirane klase
+
+/*######################################################*/
+
+PROBLEM: "Laravel Migration Error: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes"
+
+Add the following code in AppServiceProvider.php
+
+L5_root/app/Providers/AppServiceProvider.php
+
+
+use Illuminate\Support\Facades\Schema; //Import Schema
+
+function boot()
+{
+    Schema::defaultStringLength(191); //Solved by increasing StringLength
+
+}
+
+/*######################################################*/
+
+Create migration
+
+php artisan make:migration create_posts_table --create=posts
+
+php artisan make:migration add_xxxx_column_to_posts_table --create=posts //dodaje kolonu u postojecu tabelu
+
+
+/*######################################################*/
+HTML to PDF
+
+https://github.com/spiritix/html-to-pdf
+
+//Tutorial
+https://mpdf.github.io/ 
+/*######################################################*/
+
+/*######################################################*/
+Instalirati node.js skunut sa interneta za Windows, provjeriti globalnu dostupnost i zatim konfigurisati proxy ako smo na Domenu
+npm install in folder of laravel project
+npm config set proxy http://192.168.110.50:4480
+npm config set https-proxy http://192.168.110.50:4480
+/*######################################################*/
+
+
+/*######################################################*/
+SB Admin v2.0
+/*######################################################*/
+
+https://hdtuto.com/article/php-laravel-55-bootstrap-admin-theme-integration-example-from-scratch
+
+/*######################################################*/
+
+/*######################################################*/
+Composer html and forms
+/*######################################################*/
+
+composer require laravelcollective/html
+
+Change "config/app.php" file:
+
+  'providers' => [
+    // ...
+    Collective\Html\HtmlServiceProvider::class,
+    // ...
+  ],
+
+   'aliases' => [
+    // ...
+      'Form' => Collective\Html\FormFacade::class,
+      'Html' => Collective\Html\HtmlFacade::class,
+    // ...
+  ],
+/*######################################################*/
+
+
+/*######################################################*/
+  Model lists function changed to plack function
+/*######################################################*/
+
+$roles = Role::pluck('name', 'id')->all();
+
+
+/*######################################################*/
+  Laravel-Filemanager
+/*######################################################*/
+
+1. http://image.intervention.io/getting_started/installation
+
+composer require intervention/image
+
+2. https://unisharp.github.io/laravel-filemanager/installation
+
+- composer require unisharp/laravel-filemanager:~1.8
+
+- config/app.php
+
+Add service providers
+
+ UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+ Intervention\Image\ImageServiceProvider::class,
+
+And add class aliases
+
+ 'Image' => Intervention\Image\Facades\Image::class,
+
+
+3. Publish the package’s config and assets :
+
+ php artisan vendor:publish --tag=lfm_config
+ php artisan vendor:publish --tag=lfm_public
+
+4. php artisan storage:link
+
+5. https://unisharp.github.io/laravel-filemanager/integration
+
+Option 2: TinyMCE4
+
+6.Set up config/lfm.php
+
+'base_directory' => 'public',
+
+    'images_folder_name' => 'storage/uploads/photos',
+    'files_folder_name'  => 'storage/uploads/files',
+
+    'shared_folder_name' => '',
+    'thumb_folder_name'  => 'thumbs',
+
+
+..............................
+
+
+/*######################################################*/
+DataTables
+/*######################################################*/
+
+
+https://datatables.net/
+
+INSTALL
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+JS 
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
+HTML
+<table id="example" class="display" style="width:100%">
+
+
+
+
+
+

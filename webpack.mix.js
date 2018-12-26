@@ -23,7 +23,8 @@ mix.scripts([
     'resources/assets/js/libs/raphael.min.js',
     'resources/assets/js/libs/morris.min.js',
     'resources/assets/js/libs/morris-data.js',
-    'resources/assets/js/libs/sb-admin-2.js'
+    'resources/assets/js/libs/sb-admin-2.js',
+    'resources/assets/js/libs/script.js'
     
     
 ], 'public/js/libs.js').sourceMaps();

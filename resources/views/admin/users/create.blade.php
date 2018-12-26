@@ -38,6 +38,11 @@
         </div>
     
         <div class="form-group">
+            {!! Form::label('content', 'Content:') !!}
+            {!! Form::textarea('content', null, ['class'=>'form-control']) !!}
+        </div>
+    
+        <div class="form-group">
             {!! Form::label('password', 'Password:') !!}
             {!! Form::password('password', ['class'=>'form-control']) !!}
         </div>
@@ -49,6 +54,7 @@
     {!! Form::close() !!}
     
      @include('includes.formErrors')
+     @include('includes.tinyEditor')
     
     </div>
 </div>

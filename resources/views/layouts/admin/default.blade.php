@@ -14,7 +14,10 @@
 
         <!-- CSS & FONTS-->
         <link href="{{asset('css/libs.css')}}" rel="stylesheet">
-
+        
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+           
     </head>
 
     <body>
@@ -40,6 +43,7 @@
 
         <!-- JS -->
         <script src="{{asset('js/libs.js')}}"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
     </body>
 

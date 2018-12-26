@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<table class="table table-striped table-bordered table-hover">
+<table id="example" style="width:100%" class="table-responsive table-striped table-bordered table-hover display">
 
     <thead>
         <tr>

@@ -8,6 +8,7 @@ use App\User;
 use App\Role;
 use App\Photo;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UserEditRequest;
 
 class AdminUsersController extends Controller
 {
@@ -48,7 +49,12 @@ class AdminUsersController extends Controller
         //
         //User::create($request->all());
         //return redirect('/admin/users');
-        $input = $request->all();
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        }else{
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
         
         if($file = $request->file('photo_id')){
             $path = time().$file->getClientOriginalName();
@@ -57,7 +63,7 @@ class AdminUsersController extends Controller
             $input['photo_id'] = $photo->id;
         }
         //dd($input);
-        $input['password'] = bcrypt($request->password);
+        
         
         User::create($input);
         
@@ -86,7 +92,11 @@ class AdminUsersController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.users.edit');
+        $user = User::findOrFail($id);
+        
+        $roles = Role::pluck('name', 'id')->all();
+              
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -96,9 +106,30 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        }else{
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        
+        if($file = $request->file('photo_id')){
+            $path = time().$file->getClientOriginalName();
+            $file->move('images', $path);
+            $photo = Photo::create(['path'=>$path]);
+            $input['photo_id'] = $photo->id;
+        }
+       
+        //dd($input);
+        
+        $user->update($input);
+        
+        return redirect('/admin/users');
     }
 
     /**

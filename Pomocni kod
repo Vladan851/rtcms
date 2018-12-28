@@ -165,6 +165,18 @@ HTML
 <table id="example" class="display" style="width:100%">
 
 
+/*######################################################*/
+Middleware
+/*######################################################*/
+
+php artisan make:middleware Admin
+
+Kernel.php
+Registrovati middleware
+
+'admin' => \App\Http\Middleware\Admin::class,
+
+
 
 
 

@@ -132,6 +132,30 @@
                 <!-- /.nav-second-level -->
 
             </li>
+            
+             <li>
+
+                <a href="#"><i class="fa fa-files-o fa-fw"></i> Posts<span class="fa arrow"></span></a>
+
+                <ul class="nav nav-second-level">
+
+                    <li>
+
+                        <a href="{{route('posts.create')}}">Create post</a>
+
+                    </li>
+                    
+                    <li>
+
+                        <a href="{{route('posts.index')}}">All posts</a>
+
+                    </li>
+
+                </ul>
+
+                <!-- /.nav-second-level -->
+
+            </li>
 
         </ul>
 

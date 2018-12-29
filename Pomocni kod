@@ -176,6 +176,10 @@ Registrovati middleware
 
 'admin' => \App\Http\Middleware\Admin::class,
 
+/*######################################################*/
+npm clean cache --force
+/*######################################################*/
+
 
 
 

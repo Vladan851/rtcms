@@ -24,7 +24,9 @@
         <tr>
             <th>#</th>
             <th>URL</th>
+            <th>Owner</th>
             <th>Title</th>
+<!--            <th>Content</th>-->
             <th>Published</th>
             <th>Author</th>
             <th>Created_at</th>            
@@ -38,7 +40,9 @@
             <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->url}}</td>
+                <td>{{$post->user->name}}</td>
                 <td><a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</a></td>
+<!--                <td>{{html_entity_decode($post->content)}}</td>-->
                 <td>{{$post->published == 1 ? 'Published' : 'Unpublished'}}</td>
                 <td>{{$post->author}}</td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
@@ -47,7 +51,9 @@
             @endforeach
         @endif
     </tbody>
-
 </table>
+{{$posts->links()}}
+
+
 
 @endsection

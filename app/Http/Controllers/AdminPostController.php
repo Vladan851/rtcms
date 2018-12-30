@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Http\Requests\PostCreateRequest;
 
 class AdminPostController extends Controller
 {
@@ -15,7 +16,11 @@ class AdminPostController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
+        //$posts = Post::all();
+        
+        $posts = Post::paginate(10);
+        
+        //return response()->json($posts, 200);
         
         return view('admin.posts.index', compact('posts'));
     }
@@ -28,7 +33,11 @@ class AdminPostController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+       // $cat = Category::pluck('name', 'id')->all();
+        
+        $cat = ['xxx', 'yyyy'];
+        
+        return view('admin.posts.create', compact('cat'));
     }
 
     /**
@@ -37,9 +46,10 @@ class AdminPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
         //
+        return $request->all();
     }
 
     /**

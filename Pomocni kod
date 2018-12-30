@@ -1,5 +1,52 @@
 php artisan //lista komandi
 
+Git Bash program komande nad projektom Laravel
+/*********************************************************************
+//Create new Laravel project
+composer create-project laravel/laravel projectname
+//Verzija laravela
+php artisan --version
+/*********************************************************************
+
+php artisan migrate
+/*********************************************************************
+ERROR: SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long;
+
+/App/Providers/AppServiceProvider
+use Illuminate\Support\Facades\Schema;
+Schema::defaultStringLength(191);
+
+Zatim obrisati tabele koje su se pojavile i zatim ponoviti komandu
+/*********************************************************************
+
+/*********************************************************************
+ERROR MASS ASsIGMENT
+//Unesemo kod ispod sa onim atributima kojima treba biti dozvoljen mass assigment
+u onom modelu u kome se pojavi prblem
+
+ protected $fillable = ['name'];
+/*********************************************************************
+
+//Kreiranje kontrolera
+php artisan make:controller PostsController
+
+//Kreiranje kontrolera sa resursima tj sa svim funkcijama
+php artisan make:controller --resource PostsController
+
+//za greske
+composer dump-autoload
+php artisan cache:clear
+
+//Migracija tabela u mnozini
+php artisan make:migration create_roles_table --create=roles
+
+//Migriranje
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:refresh
+
+//Pravljenje modela sa Migracijom
+php artisan make:model Tag -m
 
 /*######################################################*/
 

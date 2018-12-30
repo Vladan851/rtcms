@@ -1,0 +1,113 @@
+/*********************************************************************
+/*************************ELOQVENT VEZE*******************************
+**********************************************************************/
+
+
+***************************
+//One to One USER/POST
+***************************
+//USER
+public function post() {
+        return $this->hasOne('App\Post');
+}
+//POST
+public function user() {
+        return $this->belongsTo('App\User');
+}
+
+
+******************************
+//One to Meny USER/POST
+******************************
+//USER
+public function posts() {
+        return $this->hasMany('App\Post');
+}
+//POST
+public function user() {
+        return $this->belongsTo('App\User');
+}
+
+
+******************************************
+//Meny to Meny USER/ROLE_USER/ROLE
+******************************************
+//Potrebno napraviti medju tabelu sa user_id i role_id
+//Koristimo ugradjenu funkciju "pivot" kad pristupamo medjutabeli
+//USER
+public function roles() {
+        return $this->belongsToMany('App\Role')->withPivot('created_at','updated_at');
+}
+//ROLE
+public function users(){
+    return $this->belongsTo('App\User');
+}
+
+
+****************************************************
+//Has many through relation COUNTRY/POST/USER
+*****************************************************
+COUNTRY
+public function posts() {
+        return $this->hasManyThrough('App\Post', 'App\User');
+}
+
+**************************************************
+//Polimorphic USER AND POST PHOTOS IN SAME TABLE 
+***************************************************
+kreirati tabelu sa kolonama imageable_id (ID zapisa iz tabele navedene u imageable_type) i imageable_type (povezana tabela)
+//PHOTO
+public function imageable() {
+        return $this->morphTo();
+}
+//POST, USER
+public function photos() {
+        return $this->morphMany('App\Photo', 'imageable');
+}
+
+
+*******************************************************
+//Polymorphic Meny to Meny VIDEO/POST/TAG/TAGGABLES
+*******************************************************
+//Tabela TAGGABLES sadrzi tag_id (pameti id taga), taggable_id (pameti id zapisa iz tabele navedene u taggable_type) i taggable_type (povezana tabelu koja ima pravo unosa zapisa)
+
+//POST, VIDEO
+public function tags() {
+        return $this->morphToMany('App\Tag', 'taggable');
+}
+
+//TAG
+public function posts() {
+        return $this->morphedByMany('App\Post', 'taggable');
+    }  
+public function videos() {
+        return $this->morphedByMany('App\Video', 'taggable');
+}
+
+/*************************************************************
+/*************************TINKER*******************************
+***************************************************************/
+
+php artisan tinker //database testing tool
+
+
+/*************************************************************
+/*************************SEEDS*******************************
+***************************************************************/
+
+php artisan make:seeder UsersTableSeeder
+
+//Seeder for Users table
+DB::table('users')->insert([
+            
+            'name' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'password' => bcrypt('secret'),
+            'country_id' => 1
+            
+]);
+
+//Turn on this seeder in DatabaseSeeder
+
+//Pokreni sidere
+php artisan db:seed

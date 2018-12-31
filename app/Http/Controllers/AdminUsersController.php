@@ -67,7 +67,7 @@ class AdminUsersController extends Controller
         
         User::create($input);
         
-        Session::flash('success', 'The user has been created.');
+        Session::flash('alert-success', 'The user has been updated.');
         
         return redirect('/admin/users');
     

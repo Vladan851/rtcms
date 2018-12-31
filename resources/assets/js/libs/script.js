@@ -5,7 +5,17 @@
  */
 $(document).ready(function() {
     $('#example').DataTable();
-} );
+});
+
+$(document).ready(function() {
+    
+    jQuery('#btn').click(function(e){
+        e.preventDefault();
+        console.log('Test');
+    
+    });
+    
+});
 
 
  

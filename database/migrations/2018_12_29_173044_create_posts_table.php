@@ -27,6 +27,9 @@ class CreatePostsTable extends Migration
             $table->integer('featured');
             $table->integer('count');
             $table->timestamps();
+            
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
     }
 

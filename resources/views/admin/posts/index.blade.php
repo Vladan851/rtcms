@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="flash-message">
-        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+        @foreach(['danger', 'warning', 'success', 'info'] as $msg)
           @if(Session::has('alert-' . $msg))
           <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
           @endif
@@ -26,6 +26,8 @@
             <th>URL</th>
             <th>Owner</th>
             <th>Title</th>
+            <th>Category</th>
+            <th>Photo</th>
 <!--            <th>Content</th>-->
             <th>Published</th>
             <th>Author</th>
@@ -42,6 +44,8 @@
                 <td>{{$post->url}}</td>
                 <td>{{$post->user->name}}</td>
                 <td><a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</a></td>
+                <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
+                <td><img height="50px" src="{{$post->photo ? $post->photo->path : '/images/no-image.jpg'}}"></td>
 <!--                <td>{{html_entity_decode($post->content)}}</td>-->
                 <td>{{$post->published == 1 ? 'Published' : 'Unpublished'}}</td>
                 <td>{{$post->author}}</td>
@@ -52,8 +56,7 @@
         @endif
     </tbody>
 </table>
-{{$posts->links()}}
 
-
+<button id="btn">Click me</button>
 
 @endsection

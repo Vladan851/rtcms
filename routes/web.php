@@ -37,3 +37,5 @@ Route::group(['middleware'=>'admin'], function (){
 
 Route::resource('admin/posts', 'AdminPostController');
 
+Route::get('admin/getposts', 'AdminPostController@getPosts');
+

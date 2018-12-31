@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Role::class, 3)->create();
         
        // factory(App\Post::class, 10)->create();
-        $this->call(PostsTableSeeder::class);
+       $this->call(PostsTableSeeder::class);
     }
 }

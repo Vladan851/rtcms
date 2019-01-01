@@ -26,7 +26,6 @@ class AdminPostController extends Controller
         $posts = Post::all();
         
         //return response()->json($posts, 200);
-        
         return view('admin.posts.index', compact('posts'));
     }
     
@@ -39,7 +38,10 @@ class AdminPostController extends Controller
         
         return response()->json($posts);
         
-        //return view('admin.posts.index', compact('posts'));
+        
+        //return array('posts' => $posts);
+        
+       //return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -143,9 +145,16 @@ class AdminPostController extends Controller
             
             $input['photo_id'] = $photo->id;
             
-        }
+        } 
         
-        Auth::user()->posts()->whereId($id)->first()->update($input);
+        $input['user_id'] = Auth::user()->id;
+        
+        $post = Post::findOrFail($id);
+        
+        $post->update($input);
+        
+        //Ako hocemo da samo onaj user koji je unio post moze da ga i edituje i obrise
+       // Auth::user()->posts()->whereId($id)->first()->update($input);
         
         Session::flash('alert-success', 'The post has been updated.');
         
@@ -164,7 +173,11 @@ class AdminPostController extends Controller
         //
         $post = Post::findOrFail($id);
         
-        unlink(public_path() . $post->photo->path);
+        if($post->photo){
+            
+            unlink(public_path() . $post->photo->path);
+        
+        }
         
         $photo = Photo::where('id', $post->photo_id);
         
@@ -177,6 +190,7 @@ class AdminPostController extends Controller
         return redirect('/admin/posts');
     }
     
+    //rucno pravljenje slugga u kontroleru
     function slug($str){
         
         $table = array(

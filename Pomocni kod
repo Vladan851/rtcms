@@ -1,5 +1,47 @@
 <!--{{$posts->links()}}--> paginate
 
+***********************************************
+UPLOAD IMAGE https://www.dropzonejs.com/
+**************************************************
+
+
+***********************************************
+SLUGGABLE
+**************************************************
+
+https://github.com/cviebrock/eloquent-sluggable
+
+
+INSTALL
+composer require cviebrock/eloquent-sluggable:^4.6
+
+config/app u Providers
+Cviebrock\EloquentSluggable\ServiceProvider::class,
+
+//Optionally, publish the configuration file if you want to change any defaults:
+php artisan vendor:publish --provider="Cviebrock\EloquentSluggable\ServiceProvider"
+
+POSTS model eloqvent
+
+use Cviebrock\EloquentSluggable\Sluggable;
+
+use Sluggable;
+
+public function sluggable()
+    {
+        return [
+            
+            'slug' => [
+                'source' => 'title',
+                
+            ]
+        ];
+    }
+
+
+***********************************************
+
+
 
 Slug from string
 

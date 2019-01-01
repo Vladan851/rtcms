@@ -156,6 +156,48 @@
                 <!-- /.nav-second-level -->
 
             </li>
+            
+            <li>
+
+                <a href="#"><i class="fa fa-files-o fa-fw"></i> Categories<span class="fa arrow"></span></a>
+
+                <ul class="nav nav-second-level">
+                    
+                    <li>
+
+                        <a href="{{route('categories.index')}}">All categories</a>
+
+                    </li>
+
+                </ul>
+
+                <!-- /.nav-second-level -->
+
+            </li>
+            
+            <li>
+
+                <a href="#"><i class="fa fa-files-o fa-fw"></i> Media<span class="fa arrow"></span></a>
+
+                <ul class="nav nav-second-level">
+                    
+                    <li>
+
+                        <a href="{{route('media.index')}}">All media</a>
+
+                    </li>
+                    
+                    <li>
+
+                        <a href="{{route('media.create')}}">Upload media</a>
+
+                    </li>
+
+                </ul>
+
+                <!-- /.nav-second-level -->
+
+            </li>
 
         </ul>
 

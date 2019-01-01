@@ -16,6 +16,7 @@
         <link href="{{asset('css/libs.css')}}" rel="stylesheet">
         
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
   
            
     </head>
@@ -44,7 +45,7 @@
         <!-- JS -->
         <script src="{{asset('js/libs.js')}}"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
     </body>
 

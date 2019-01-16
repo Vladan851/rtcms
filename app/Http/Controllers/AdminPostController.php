@@ -212,4 +212,10 @@ class AdminPostController extends Controller
 	return $str;
     }
     
+    public function post($id){
+        
+        return view('post');
+        
+    }
+    
 }

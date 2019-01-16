@@ -150,6 +150,12 @@
                         <a href="{{route('posts.index')}}">All posts</a>
 
                     </li>
+                    
+                    <li>
+
+                        <a href="{{route('comments.index')}}">All comments</a>
+
+                    </li>
 
                 </ul>
 

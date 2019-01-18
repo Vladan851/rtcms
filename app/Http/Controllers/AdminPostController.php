@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Category;
+use App\Comment;
+use App\CommentReplay;
 
 class AdminPostController extends Controller
 {
@@ -212,9 +214,18 @@ class AdminPostController extends Controller
 	return $str;
     }
     
-    public function post($id){
+    public function post($slug){
         
-        return view('post');
+        //$post = Post::findOrFail($id);
+        
+        $post = Post::findBySlugOrFail($slug);
+        
+        
+        $comments = $post->comments->where('is_active',1);
+        
+        $cats = Category::all();
+                
+        return view('post', compact('post', 'cats', 'comments', ''));
         
     }
     

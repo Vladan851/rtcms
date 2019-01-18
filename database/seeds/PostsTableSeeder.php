@@ -38,6 +38,7 @@ class PostsTableSeeder extends Seeder
                         'author' => 'RT',
                         'source' => 'RT',
                         'title' => $title,
+                        'slug' => '',
                         'content' => $content,
                         'published' => 1,
                         'featured' => rand(0, 1),

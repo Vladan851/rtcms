@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CommentReplay;
+use Illuminate\Support\Facades\Auth;
+use App\User;
+use Illuminate\Support\Facades\Session;
 
 class CommentRepliesController extends Controller
 {
@@ -35,6 +39,22 @@ class CommentRepliesController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
+        
+        $data = [
+            'comment_id' => $request->comment_id,
+            //'author' => $request->ip(),
+            'author' => $user->name,
+            'email' => $user->email,
+            'body' => $request->body
+        ];
+        
+        CommentReplay::create($data);
+        
+        Session::flash('alert-success', 'Your replay has been submitted.');
+        //$request->session()->flash('comment_message', 'Your comment has been submitted.');
+        
+        return redirect()->back();
     }
 
     /**
@@ -69,6 +89,9 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        CommentReplay::findOrFail($id)->update($request->all());
+        
+        return redirect('/admin/comments');
     }
 
     /**
@@ -80,5 +103,8 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
+        CommentReplay::findOrFail($id)->delete();
+        
+        return redirect()->back();
     }
 }

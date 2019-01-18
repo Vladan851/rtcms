@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<table id="example" style="width:100%" class="table-responsive table-striped table-bordered table-hover display">
+<table id="example1" style="width:100%" class="table-responsive table-striped table-bordered table-hover display">
 
     <thead>
         <tr>
@@ -31,6 +31,8 @@
 <!--            <th>Content</th>-->
             <th>Published</th>
             <th>Author</th>
+            <th>Post link</th>
+            <th>Comment link</th>
             <th>Created_at</th>            
             <th>Updated_at</th>
         </tr>
@@ -49,6 +51,8 @@
 <!--                <td>{{html_entity_decode($post->content)}}</td>-->
                 <td>{{$post->published == 1 ? 'Published' : 'Unpublished'}}</td>
                 <td>{{$post->author}}</td>
+                <td><a href="{{route('post', $post->slug)}}">View post</a></td>
+                <td><a href="{{route('comments.show', $post->id)}}">View comments</a></td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
                 <td>{{$post->updated_at->diffForHumans()}}</td>
             </tr>

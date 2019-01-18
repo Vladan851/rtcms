@@ -204,6 +204,10 @@ $(document).ready(function() {
     $('#example').DataTable();
 });
 
+$(document).ready(function() {
+    $('#example1').DataTable();
+})
+
 
 //Click me
 $(document).ready(function() {

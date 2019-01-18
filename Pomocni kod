@@ -1,3 +1,13 @@
+**********************************************
+INTL ekstenzija za prevod sa cir na lat
+************************************************
+
+1. Aktivirati INTL ekstenziju u php.ini i resetovati Apache
+2. transliterator_transliterate('Any-Latin; Latin-ASCII',$post->content);
+3. Laravel {!! html_entity_decode(transliterator_transliterate('Any-Latin; Latin-ASCII',$post->content)) !!}
+
+
+
 <!--{{$posts->links()}}--> paginate
 
 ***********************************************

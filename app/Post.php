@@ -4,12 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Post extends Model
 {
     //
     //
     use Sluggable;
+    use SluggableScopeHelpers;
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -20,8 +22,7 @@ class Post extends Model
         return [
             
             'slug' => [
-                'source' => 'title',
-                
+                'source' => 'title',   
             ]
         ];
     }
@@ -61,7 +62,7 @@ class Post extends Model
     
     public function comments() {
         
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Comment');
         
     }
     

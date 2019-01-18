@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->truncate();
         DB::table('roles')->truncate();
-        DB::table('posts')->truncate();
+        //DB::table('posts')->truncate();
         // $this->call(UsersTableSeeder::class);
         
         factory(App\User::class, 10)->create();

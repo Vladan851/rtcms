@@ -47,4 +47,30 @@ class AdminMediasController extends Controller
         
     }
     
+    
+    public function deleteMedia(Request $request){
+        
+        if(isset($request->delete_single)){
+            
+            $this->destroy($request->photo);
+            
+            return redirect()->back();
+            
+        }
+        
+        if(isset($request->delete_all) && !empty($request->checkBoxArray)){
+        
+        
+            $photos = Photo::findOrFail($request->checkBoxArray);
+
+            foreach ($photos as $photo) {
+                unlink(public_path() . $photo->path);
+                $photo->delete();
+            }
+
+            return redirect()->back();
+        }
+        
+    }
+    
 }

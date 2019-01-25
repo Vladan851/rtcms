@@ -220,12 +220,11 @@ class AdminPostController extends Controller
         
         $post = Post::findBySlugOrFail($slug);
         
-        
         $comments = $post->comments->where('is_active',1);
         
         $cats = Category::all();
                 
-        return view('post', compact('post', 'cats', 'comments', ''));
+        return view('post', compact('post', 'cats', 'comments'));
         
     }
     

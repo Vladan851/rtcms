@@ -25,20 +25,21 @@ class PostsTableSeeder extends Seeder
                     //dump($pom);
                     $title = $item->title;
                     $url = $item->link;
+                    $urlx = explode('/', $url, 5);
                     $content = htmlentities($content->encoded);
                     $pubDate = trim($item->pubDate);
                              
                     
                 DB::table('posts')->insert([
                         //
-                        'url' => $url,
+                        'url' => '/'.$urlx[3],
                         'user_id' => 1,
                         'photo_id' => 1, 
                         'category_id' => 1, 
                         'author' => 'RT',
                         'source' => 'RT',
                         'title' => $title,
-                        'slug' => '',
+                        'slug' => $urlx[3],
                         'content' => $content,
                         'published' => 1,
                         'featured' => rand(0, 1),

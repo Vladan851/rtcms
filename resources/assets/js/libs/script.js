@@ -36,3 +36,24 @@ $(document).ready(function() {
     });
 
 });
+
+
+$(document).ready(function(){
+       
+    $('#options').click(function(){
+        
+        if(this.checked){
+            $('.checkBoxes').each(function(){
+                this.checked = true;
+            });
+        } else {
+            $('.checkBoxes').each(function(){
+                this.checked = false;
+            });
+        }
+        console.log('hello');
+        
+    });   
+    //console.log('hello');
+       
+});

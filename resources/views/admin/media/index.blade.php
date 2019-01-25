@@ -9,11 +9,23 @@
     </div>
 </div>
 
+{!! Form::open(['method'=>'GET', 'action' => 'AdminMediasController@deleteMedia']) !!}
+            
+    <div class="form-group">
+        <select name="checkBoxArray" id="">
+            <option value="delete">Delete</option>
+        </select>
+    </div>
 
-<table id="example" style="width:100%" class="table-responsive table-striped table-bordered table-hover display">
-        
+    <div class="form-group">
+        {!! Form::submit('Delete',['class'=>'btn btn-primary', 'name'=>'delete_all']) !!}
+    </div>
+
+    <table id="example" style="width:100%" class="table-responsive table-striped table-bordered table-hover display">
+
         <thead>
             <tr>
+                <th><input type="checkbox" id="options"></th>
                 <th>#</th>
                 <th>Image</th>
                 <th>Added date</th>
@@ -24,29 +36,31 @@
         <tbody>
             
             @if($photos)
+                
                 @foreach($photos as $photo)
+                
                 <tr>
+                    <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}"></td>
                     <td>{{$photo->id}}</td>
                     <td><img height="50px" src="{{$photo->path ? $photo->path : '/images/no-image.jpg'}}"></td>
                     <td>{{$photo->created_at ? $photo->created_at->diffForHumans() : 'NO DATE'}}</td>
                     <td>
-                        
-                        {!! Form::open(['method'=>'DELETE', 'action' => ['AdminMediasController@destroy', $photo->id]]) !!}
-        
-                            <div class="form-group">
-                                {!! Form::submit('Delete',['class'=>'btn btn-danger col-sm-6']) !!}
-                            </div>
-
-                        {!! Form::close() !!}
-                        
+                        <input type="hidden" name="photo" value="{{$photo->id}}">
+                        <div class="form-group">
+                            {!! Form::submit('Delete',['class'=>'btn btn-danger', 'name'=>'delete_single']) !!}
+                        </div>
                     </td>
                 </tr>
+                
                 @endforeach
+               
             @endif
         
         </tbody>
-        
+
     </table>
 
+{!! Form::close() !!}
+ 
 @endsection
 

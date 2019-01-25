@@ -15,6 +15,12 @@
                     @endif
 
                     You are logged in!
+                    
+                    <?php
+                        $pom = 'http://radiotrebinje.com/trebinjske-kosarkasice-u-finalu-kupa-srpske/';
+                        $x = explode("/", $pom, 5);
+                        var_dump($x);
+                    ?>
                 </div>
             </div>
         </div>

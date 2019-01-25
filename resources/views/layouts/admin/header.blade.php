@@ -188,7 +188,7 @@
 
         <ul class="dropdown-menu dropdown-user">
 
-            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            <li><a href="{{route('users.edit', Auth::user()->id)}}"><i class="fa fa-user fa-fw"></i> User Profile</a>
 
             </li>
 
@@ -198,9 +198,13 @@
 
             <li class="divider"></li>
 
-            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-
+            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out fa-fw"></i> {{ __('Logout') }}</a>
             </li>
+            
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
 
         </ul>
 

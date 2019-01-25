@@ -76,7 +76,7 @@
                     <td>{{$reply->body}}</td>
                     <td>{{$reply->created_at->diffForHumans()}}</td>
                     <td>{{$reply->is_active == 1 ? 'Published' : 'Unpublished'}}</td>
-                    <td><a href="{{route('post', $comment->post->id)}}">View post</a></td>
+                    <td><a href="{{route('post', $comment->post->slug)}}">View post</a></td>
                     <td><a href="{{route('comments.show', $comment->id)}}">View comment</a></td>
                     <td>
                         @if($reply->is_active == 1)

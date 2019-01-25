@@ -8,7 +8,6 @@
 </p>
 <p><span class="glyphicon glyphicon-time">Posted at: {{$post->created_at->diffForHumans()}}</span></p>
 
-<!--{!! html_entity_decode(transliterator_transliterate('Any-Latin; Latin-ASCII',$post->content)) !!}-->
 {!! html_entity_decode($post->content) !!}
 
     <div class="flash-message">
